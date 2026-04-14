@@ -1,3 +1,6 @@
+using Hospital.DataAccessLayer.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Hospital
 {
     public class Program
@@ -8,6 +11,12 @@ namespace Hospital
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration["ConnectionStrings:AppConnectionString"]);
+            });
+
+
 
             var app = builder.Build();
 
