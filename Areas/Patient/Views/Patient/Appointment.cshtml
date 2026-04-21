@@ -1,4 +1,6 @@
-﻿<div class="container-fluid py-5">
+﻿@using Hospital.Areas.Patient.ViewModel
+@model AppointmentDepartmentsWithDoctor
+<div class="container-fluid py-5">
     <div class="container">
         <div class="row gx-5">
             <div class="col-lg-6 mb-5 mb-lg-0">
@@ -21,19 +23,24 @@
                     <form>
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
-                                <select class="form-select bg-white border-0" style="height: 55px;">
-                                    <option selected>Choose Department</option>
-                                    <option value="1">Department 1</option>
-                                    <option value="2">Department 2</option>
-                                    <option value="3">Department 3</option>
+                                <select name="SpecializationId" class="form-select bg-white border-0" style="height: 55px;">
+                                    <option disabled>Choose Department</option>
+                                   @foreach (var item in Model.Departments)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    >
+                                    
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <select class="form-select bg-white border-0" style="height: 55px;">
-                                    <option selected>Select Doctor</option>
-                                    <option value="1">Doctor 1</option>
-                                    <option value="2">Doctor 2</option>
-                                    <option value="3">Doctor 3</option>
+                                <select name="DoctorId"  class="form-select bg-white border-0" style="height: 55px;">
+                                    <option disabled>Select Doctor</option>
+                                    @foreach (var item in Model.Doctors)
+                                        {
+                                        <option value="@item.Id">@item.Name</option>
+
+                                    }
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6">

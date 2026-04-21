@@ -1,15 +1,18 @@
-﻿using Hospital.DataAccessLayer.Data;
+﻿using Hospital.Areas.Patient.ViewModel;
+using Hospital.DataAccessLayer.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hospital.Controllers
+namespace Hospital.Areas.Patient.Controllers
 {
-    public class HomeController: Controller
+    [Area(Utilities.StaticData.PATIENT_AREA)]
+    public class PatientController: Controller
     {
         readonly private ApplicationDbContext _dbContext;
-        public HomeController(ApplicationDbContext context)
+        public PatientController(ApplicationDbContext context)
         {
             _dbContext = context;
         }
+        
         public IActionResult Index()
         {
             return View();
@@ -20,7 +23,7 @@ namespace Hospital.Controllers
         }
         public IActionResult Appointment()
         {
-            return View();
+            return View(new AppointmentDepartmentsWithDoctor() { Departments=_dbContext.Specializations.ToList(), Doctors=_dbContext.Doctors.ToList()});
         }
         public IActionResult Service()
         {

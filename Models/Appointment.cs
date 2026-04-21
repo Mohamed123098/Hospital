@@ -6,7 +6,9 @@
         public string PatientName { get; set; }
         public DateOnly AppointmentDate { get; set; }
         public TimeOnly AppointmentTime { get; set; }
-        public List<Doctor> Doctors { get; set; } = [];
-        public List<AppointmentsDoctor> AppointmentsDoctors { get; set; } = [];
+        public int DoctorId { get; set; }
+        public Hospital.Models.Doctor Doctor { get; set; }
+        public int SpecializationId { get; set; }
+        public Specialization Specialization { get; set; }
     }
 }

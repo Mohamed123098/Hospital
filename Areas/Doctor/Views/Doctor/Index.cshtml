@@ -1,0 +1,78 @@
+﻿@using Hospital.Areas.Doctor.ViewModels
+@using Hospital.DTOs.Doctor
+@using Hospital.DataAccessLayer.Data
+@model DoctorWithSpecializationAndRelatedData
+<div class="container mt-5">
+    <h2 class="mb-4">Doctor Information</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Age</th>
+                    <th>Image</th>
+                    <th>Bio</th>
+                    <th>Specialization Name</th>
+                </tr>
+            </thead>
+            <tbody>
+             @foreach (var doctor in Model.DoctorWithSpecialization)
+                {
+                    <tr>
+                        <td>@doctor.Key.Name</td>
+                        <td>@doctor.Key.Position</td>
+                        <td>@doctor.Key.Age</td>
+                        <td>
+                            <img src="~/images/@doctor.Key.Image" alt="Profile Image" class="img-thumbnail" width="80">
+                        </td>
+                        <td>@doctor.Key.Bio</td>
+                        <td>@doctor.Value</td>
+                    </tr>
+                }
+               
+            </tbody>
+        </table>
+
+   <nav aria-label="Page navigation example" class="d-flex justify-content-center align-items-center">
+    <ul class="pagination">
+        
+        <li class="page-item">
+            @if(Model.CurrentPage>1)
+            {
+                        <a class="page-link" href="/Doctor/Doctor/index?page=@(Model.CurrentPage - 1)">Previous</a>
+                    }
+                    
+        </li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            
+                        @if(i==Model.CurrentPage)
+                        {
+                        <li class="page-item active">
+                            <a class="page-link" href="/Doctor/Doctor/index?page=@i">@i</a>
+                        </li>
+
+                        }
+                        else
+                        {
+                        <li class="page-item">
+                            <a class="page-link" href="/Doctor/Doctor/index?page=@i">@i</a>
+                        </li>
+                        }
+            
+        }
+
+        <li class="page-item">
+                    @if (Model.CurrentPage < Model.TotalPages)
+                    {
+                        <a class="page-link" href="/Doctor/Doctor/index?page=@(Model.CurrentPage + 1)">Next</a>
+                    }
+
+                </li>
+
+    </ul>
+</nav>
+    </div>
+</div>

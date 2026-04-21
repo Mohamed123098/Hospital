@@ -1,0 +1,16 @@
+﻿@model List<Specialization>
+<form class="form-control " enctype="multipart/form-data" action="/Doctor/Save" method="post">
+    <input  class="d-block m-2 w-50 rounded-2 border-2"  type="text" name="Name" placeholder="name...."/>
+    <input class="d-block m-2  w-50 rounded-2 border-2" type="text" name="Position" placeholder="position...." />
+    <input class="d-block m-2  w-50 rounded-2 border-2" type="number" name="Age" placeholder="Age...." />
+    <input class="d-block m-2  w-50 rounded-2 border-2" type="text" name="Bio" placeholder="Bio...." />
+    <select name="SpecializationId">
+        @foreach (var specialization in Model)
+            {
+            <option value="@specialization.Id">@specialization.Name</option>
+            }
+        
+    </select>
+    <input class="d-block m-2  w-50 rounded-2 border-2" type="file" name="formFile" />
+    <button class="d-block m-2 btn-success rounded-3"  type="submit"> Submit </button>
+</form>

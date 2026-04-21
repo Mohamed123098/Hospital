@@ -6,5 +6,7 @@
         public string Name { get; set; }
         public int Capacity { get; set; }
         public List<Doctor> Doctors { get; set; } = [];
+        public List<Appointment> Appointments { get; set; } = [];
+
     }
 }
